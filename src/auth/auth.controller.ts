@@ -1,9 +1,10 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { Public } from '../common/decorators/public.decorator';
 import { AuthenticatedUser } from '../common/interfaces/jwt-payload.interface';
 import { AuthService } from './auth.service';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ChangePasswordDto, LoginDto, RefreshTokenDto, RegisterDto } from './dto/auth.dto';
 
 @ApiTags('2. Authentication')
@@ -37,6 +38,7 @@ export class AuthController {
   }
 
   /** TC-12: verify a logged-in user can log out successfully. */
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Post('logout')
   @HttpCode(HttpStatus.OK)
@@ -45,6 +47,7 @@ export class AuthController {
     return this.authService.logout(user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('me')
   @ApiOperation({ summary: 'Get the currently authenticated user' })
@@ -52,6 +55,7 @@ export class AuthController {
     return this.authService.profile(user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Post('change-password')
   @HttpCode(HttpStatus.OK)

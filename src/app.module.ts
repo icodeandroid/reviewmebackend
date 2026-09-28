@@ -12,7 +12,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { WidgetsModule } from './widgets/widgets.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { AnalyticsModule } from './analytics/analytics.module';
-
+import { ValidationModule } from './validation/validation.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -39,6 +39,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
     WidgetsModule,
     NotificationsModule,
     AnalyticsModule,
+    ValidationModule
   ],
 })
 export class AppModule {}

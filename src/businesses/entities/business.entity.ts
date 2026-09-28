@@ -32,6 +32,12 @@ export class Business {
   @Column({ type: 'varchar', length: 80, nullable: true })
   category!: string;
 
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  industry!: string;
+
+  @Column({ type: 'int', nullable: true })
+  foundedYear!: number;
+
   @Column({ type: 'varchar', length: 255, nullable: true })
   website!: string;
 
@@ -44,8 +50,32 @@ export class Business {
   @Column({ type: 'varchar', length: 255, nullable: true })
   address!: string;
 
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  city!: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  state!: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  country!: string;
+
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  postalCode!: string;
+
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  brandColor!: string;
+
+  @Column({ type: 'jsonb', nullable: true })
+  businessHours!: Record<string, string>;
+
+  @Column({ type: 'jsonb', nullable: true })
+  socialLinks!: Record<string, string>;
+
   @Column({ type: 'varchar', length: 500, nullable: true })
   logoUrl!: string;
+
+  @Column({ type: 'varchar', length: 500, nullable: true })
+  bannerUrl!: string;
 
   /** When true, submitted reviews are published only after owner approval. */
   @Column({ type: 'boolean', default: true })
