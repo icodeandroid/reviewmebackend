@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Delete,
+  UseInterceptors,
 } from '@nestjs/common';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
 import { ReviewsService } from './reviews.service';
 
@@ -22,7 +24,8 @@ export class ReviewsController {
     private readonly reviewsService: ReviewsService,
   ) {}
 
-  @Post()
+    @Post()
+  @UseInterceptors(AnyFilesInterceptor())
   create(
     @Body() dto: CreateReviewDto,
   ) {
